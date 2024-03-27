@@ -1,5 +1,5 @@
 {
-  "name": "ts-nextjs-tailwind-starter",
+  "name": "todo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,8 @@
   },
   "dependencies": {
     "clsx": "^2.0.0",
+    "flowbite": "^2.3.0",
+    "flowbite-react": "^0.7.5",
     "lucide-react": "^0.321.0",
     "next": "^14.0.4",
     "react": "^18.2.0",
