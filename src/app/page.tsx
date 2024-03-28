@@ -37,6 +37,10 @@ export default function HomePage() {
     settodoList(todoList.map((todo) => (todo.id === id ? editedTodo : todo)));
   };
 
+  const deleteTodo = (id: string) => {
+    settodoList(todoList.filter((todo) => todo.id !== id));
+  };
+
   return (
     <QueryClientProvider client={queryClient}>
       <main>
@@ -126,7 +130,10 @@ export default function HomePage() {
                             <FaEdit />
                           </Button>
 
-                          <Button color='transparent'>
+                          <Button
+                            color='transparent'
+                            onClick={() => deleteTodo(el.id)}
+                          >
                             <FaTrash />
                           </Button>
                         </div>
