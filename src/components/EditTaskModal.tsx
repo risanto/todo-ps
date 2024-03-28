@@ -25,29 +25,27 @@ export default function EditTaskModal({
     setOpenModal(false);
   };
 
-  if (openModal) {
-    return (
-      <Modal show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header>Edit Task</Modal.Header>
-        <Modal.Body>
-          <div className='flex items-center justify-center'>
-            <TextInput
-              className='flex-grow'
-              defaultValue={todo.text}
-              onChange={(e) => setnewText(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleEditTodo();
-                }
-              }}
-            />
+  return (
+    <Modal show={openModal} onClose={() => setOpenModal(false)}>
+      <Modal.Header>Edit Task</Modal.Header>
+      <Modal.Body>
+        <div className='flex items-center justify-center'>
+          <TextInput
+            className='flex-grow'
+            defaultValue={todo.text}
+            onChange={(e) => setnewText(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleEditTodo();
+              }
+            }}
+          />
 
-            <Button className='ml-4' onClick={handleEditTodo}>
-              Submit
-            </Button>
-          </div>
-        </Modal.Body>
-      </Modal>
-    );
-  }
+          <Button className='ml-4' onClick={handleEditTodo}>
+            Submit
+          </Button>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
 }
