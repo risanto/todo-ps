@@ -1,21 +1,35 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { Button, Modal, TextInput } from 'flowbite-react';
 import { Dispatch, SetStateAction, useState } from 'react';
+
+import { Todo } from '@/app/page';
 
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  addTodo: (text: string) => void;
+  addTodo: (newTodo: Todo) => void;
 };
+
+async function fetchTodoIcon() {
+  const res = await fetch('https://dog.ceo/api/breeds/image/random');
+  const data = await res.json();
+  return data.message;
+}
 
 export default function AddTaskModal({
   openModal,
   setOpenModal,
   addTodo,
 }: Props) {
+  const queryClient = useQueryClient();
   const [text, settext] = useState('');
 
-  const handleAddText = () => {
-    addTodo(text);
+  const handleAddTodo = async () => {
+    const iconImg = await queryClient.fetchQuery({
+      queryFn: fetchTodoIcon,
+      queryKey: ['todoIcon'],
+    });
+    addTodo({ text, iconImg, checked: false });
     setOpenModal(false);
   };
 
@@ -30,12 +44,12 @@ export default function AddTaskModal({
               onChange={(e) => settext(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  handleAddText();
+                  handleAddTodo();
                 }
               }}
             />
 
-            <Button className='ml-4' onClick={handleAddText}>
+            <Button className='ml-4' onClick={handleAddTodo}>
               Submit
             </Button>
           </div>
