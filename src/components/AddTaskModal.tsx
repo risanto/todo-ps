@@ -12,9 +12,14 @@ type Props = {
 };
 
 async function fetchTodoIcon() {
-  const res = await fetch('https://dog.ceo/api/breeds/image/random');
-  const data = await res.json();
-  return data.message;
+  const res = await fetch('api/icon-img', {
+    headers: {
+      'Cache-Control': 'no-cache',
+      Pragma: 'no-cache',
+    },
+  });
+  const { data } = await res.json();
+  return data;
 }
 
 export default function AddTaskModal({
@@ -24,20 +29,28 @@ export default function AddTaskModal({
 }: Props) {
   const queryClient = useQueryClient();
   const [text, settext] = useState('');
+  const [error, seterror] = useState('');
 
   const handleAddTodo = async () => {
-    const iconImg = await queryClient.fetchQuery({
-      queryFn: fetchTodoIcon,
-      queryKey: ['todoIcon'],
-    });
-    addTodo({ text, iconImg, checked: false, id: uuidv4() });
-    setOpenModal(false);
+    try {
+      const iconImg = await queryClient.fetchQuery({
+        queryFn: fetchTodoIcon,
+        queryKey: ['todoIcon'],
+      });
+
+      addTodo({ text, iconImg, checked: false, id: uuidv4() });
+      setOpenModal(false);
+    } catch (error: any) {
+      seterror(error.message);
+    }
   };
 
   return (
     <Modal show={openModal} onClose={() => setOpenModal(false)}>
       <Modal.Header>Add New Task</Modal.Header>
       <Modal.Body>
+        {error.length ? <span className='text-red-500'>{error}</span> : ''}
+
         <div className='flex items-center justify-center'>
           <TextInput
             className='flex-grow'
