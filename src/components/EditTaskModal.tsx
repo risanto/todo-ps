@@ -18,7 +18,7 @@ export default function EditTaskModal({
 }: Props) {
   const [newText, setnewText] = useState('');
 
-  if (!todo) return;
+  if (!todo) return <></>;
 
   const handleEditTodo = async () => {
     editTodo(todo.id, { ...todo, text: newText });

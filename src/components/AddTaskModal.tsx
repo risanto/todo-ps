@@ -34,28 +34,26 @@ export default function AddTaskModal({
     setOpenModal(false);
   };
 
-  if (openModal) {
-    return (
-      <Modal show={openModal} onClose={() => setOpenModal(false)}>
-        <Modal.Header>Add New Task</Modal.Header>
-        <Modal.Body>
-          <div className='flex items-center justify-center'>
-            <TextInput
-              className='flex-grow'
-              onChange={(e) => settext(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') {
-                  handleAddTodo();
-                }
-              }}
-            />
+  return (
+    <Modal show={openModal} onClose={() => setOpenModal(false)}>
+      <Modal.Header>Add New Task</Modal.Header>
+      <Modal.Body>
+        <div className='flex items-center justify-center'>
+          <TextInput
+            className='flex-grow'
+            onChange={(e) => settext(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleAddTodo();
+              }
+            }}
+          />
 
-            <Button className='ml-4' onClick={handleAddTodo}>
-              Submit
-            </Button>
-          </div>
-        </Modal.Body>
-      </Modal>
-    );
-  }
+          <Button className='ml-4' onClick={handleAddTodo}>
+            Submit
+          </Button>
+        </div>
+      </Modal.Body>
+    </Modal>
+  );
 }
