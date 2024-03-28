@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
   // !STARTERCONF this is the default favicon, you can generate your own from https://realfavicongenerator.net/
   // ! copy to /favicon folder
-  icons: {
-    icon: '/favicon/favicon.ico',
-    shortcut: '/favicon/favicon-16x16.png',
-    apple: '/favicon/apple-touch-icon.png',
-  },
-  manifest: `/favicon/site.webmanifest`,
+  // icons: {
+  //   icon: '/favicon/favicon.ico',
+  //   shortcut: '/favicon/favicon-16x16.png',
+  //   apple: '/favicon/apple-touch-icon.png',
+  // },
+  // manifest: `/favicon/site.webmanifest`,
   openGraph: {
     url: siteConfig.url,
     title: siteConfig.title,
