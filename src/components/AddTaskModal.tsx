@@ -1,6 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { Button, Modal, TextInput } from 'flowbite-react';
 import { Dispatch, SetStateAction, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Todo } from '@/app/page';
 
@@ -29,7 +30,7 @@ export default function AddTaskModal({
       queryFn: fetchTodoIcon,
       queryKey: ['todoIcon'],
     });
-    addTodo({ text, iconImg, checked: false });
+    addTodo({ text, iconImg, checked: false, id: uuidv4() });
     setOpenModal(false);
   };
 
