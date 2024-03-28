@@ -3,7 +3,7 @@ import { Button, Modal, TextInput } from 'flowbite-react';
 import { Dispatch, SetStateAction, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Todo } from '@/app/page';
+import { Todo } from '@/components/Todo/TodoComponent';
 
 type Props = {
   openModal: boolean;

@@ -1,7 +1,7 @@
 import { Button, Modal, TextInput } from 'flowbite-react';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import { Todo } from '@/app/page';
+import { Todo } from '@/components/Todo/TodoComponent';
 
 type Props = {
   todo: Todo | null;
